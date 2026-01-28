@@ -62,10 +62,19 @@ If the work happens inside a git repo, extend the cycle with:
 ### UI Intent
 Commit history is a first-class UI surface. The user should see a list of recent completed tasks, so commit messages must be clear and task-scoped.
 
-## 4. Project Organization
+## 4. Agent Playbooks (Required Index)
+
+AGENTS.md must always include a complete list of all playbooks with their paths and a brief description. When a playbook is added, removed, or renamed, update this list in the same change.
+
+Current playbooks:
+* `playbooks/how_to_create_a_new_playbook.md` - How to create a new operational playbook (scope, template, and lifecycle requirements).
+* `playbooks/how_to_commit_and_push_changes.md` - How to summarize, approve, commit, and push changes safely.
+* `playbooks/debugging_changes_that_lead_to_errors.md` - Evidence-first debugging workflow for changes that cause errors.
+
+## 5. Project Organization
 
 The readme must always immediately be updated to reflect any changes in project organization, including new directories or files.
 
-## 5. Logging & Debugging Standards
+## 6. Logging & Debugging Standards
 *   **Requirement**: The project must include comprehensive logging and debugging capabilities.
 *   **Implementation**: Any new feature or module must include appropriate logging statements to facilitate troubleshooting and performance monitoring.

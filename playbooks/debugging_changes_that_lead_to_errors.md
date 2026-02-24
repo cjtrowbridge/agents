@@ -123,7 +123,7 @@ Before implementing:
 1. Update documentation where future-you will see it first:
 
    * `README.md` if behavior/usage changed
-   * `AGENTS.md` if this is a new operational rule
+   * `RULES.md` if this is a new operational rule
    * Add/update a playbook note if this is a recurring pitfall
 2. Update the task plan or playbook if new steps were discovered or the workflow changed.
 3. Add a short **"Known Failure Mode"** note:

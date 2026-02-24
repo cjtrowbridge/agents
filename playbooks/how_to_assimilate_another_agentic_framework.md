@@ -21,7 +21,7 @@ Use this playbook when:
 ## Step-by-Step Instructions
 
 1.  **Take a First Look at This Repo (Required, Before Asking for a Goal)**
-    * Read `AGENTS.md`, `README.md`, and the current `playbooks/*.md`.
+    * Read `RULES.md`, `README.md`, and the current `./playbooks/*.md`.
     * Summarize the framework's apparent design philosophy by comparing and contrasting each of the key features to those of our framework.
     * Identify the current baseline posture:
         * Minimal-by-default vs batteries-included.
@@ -156,7 +156,7 @@ Use this playbook when:
 
 11.  **Propose an Atomic Integration Plan (Do Not Implement Yet)**
     * Break the recommended changes into small, reviewable tasks.
-    * Include every file expected to change (`AGENTS.md`, `README.md`, playbooks, code/tools, templates, etc.).
+    * Include every file expected to change (`RULES.md`, `README.md`, playbooks, code/tools, templates, etc.).
     * If a new playbook is required, include it explicitly.
     * If prompt/instruction tone changes are proposed, identify where that wording lives and how behavior will be validated.
     * Ask clarifying questions for anything ambiguous.
@@ -177,7 +177,7 @@ Use this playbook when:
 
 14.  **Update Documentation and Playbooks (Self-Evolving Requirement)**
     * Update `README.md` if project organization, documented workflows, or user-facing usage changed.
-    * Update `AGENTS.md` if operational policy, index requirements, or framework rules changed.
+    * Update `RULES.md` if operational policy, index requirements, or framework rules changed.
     * Update existing playbooks if the assimilation changed how common workflows should be executed.
     * Add a new playbook if the review exposed a recurring workflow that lacks one.
     * Document not only what changed, but why the change improves the framework.
@@ -188,6 +188,7 @@ Use this playbook when:
         * Which lessons were adopted.
         * Which were rejected.
         * Why.
+    * Store entries in `./docs/assimilations/` using `./templates/assimilation_trail_entry.md` and a date-first filename (`YYYY-MM-DD-framework-name.md`).
     * This prevents repeated re-analysis and helps future agents understand prior reasoning.
 
 ## Required Deliverable Template (Use in Responses)
@@ -249,3 +250,4 @@ If this occurs inside a git repo:
 * Review `git status` and relevant diffs.
 * Suggest a commit message that summarizes the completed task.
 * Commit after completion.
+

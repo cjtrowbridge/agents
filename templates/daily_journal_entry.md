@@ -13,6 +13,10 @@
   - For user-only fields, agent may only insert verbatim user-provided text.
   - If user input is not provided, leave an empty list item (`-`).
 
+## Today's Intentions
+
+-
+
 ## Kickoff Context
 
 - Date: YYYY-MM-DD
@@ -27,10 +31,6 @@
   - [list]
 - Kickoff capture goals:
   - [what the agent is helping capture now]
-
-## Today's Intentions
-
--
 
 ## Kanban State Summary
 

@@ -48,22 +48,27 @@ Run a startup workflow that discovers daily artifact state, gets approval before
      - what exists today,
      - what was created,
      - what information is still needed.
-   - Ask the smallest set of questions required to fill today's intentions and immediate task flow.
+   - Ask the smallest set of questions required to capture:
+     - `Today's Intentions` from the user (verbatim user text only),
+     - immediate task flow details.
 
 7. **Apply Kanban Changes**
    - If task moves are requested, follow `./playbooks/how_to_move_kanban_tasks_verbatim.md`.
 
-8. **Update Journal Entry**
-   - Append today's intentions from conversation.
-   - Append kanban state summary and any moves performed.
-   - Append required repo work log entries for repository changes made during the checkpoint.
+8. **Prepare Journal Update Content**
+   - Capture `Today's Intentions` using verbatim user-provided text only.
+   - Do not author, infer, summarize, or rewrite intentions.
+   - If the user does not provide intentions, keep `Today's Intentions` as an empty list item (`-`).
+   - Draft kanban state summary and any moves performed.
+   - Draft required repo work log entries for repository changes made during the checkpoint.
 
 9. **Present Snapshot Summary**
    - List files changed.
    - List what was added/updated.
    - List kanban moves with exact task lines.
 
-10. **Ask Save Approval**
+10. **Prompt Journal Create/Update and Ask Save Approval**
+   - After summary, ask whether to create or update today's journal entry with the drafted checkpoint details.
    - Ask user to approve saving the snapshot edits.
    - If approved, save files.
 
@@ -73,6 +78,7 @@ Run a startup workflow that discovers daily artifact state, gets approval before
 ## Verification
 
 - `./journal/YYYY-MM-DD.md` exists and has kickoff/intent/log sections filled.
+- `Today's Intentions` contains user-provided text or an empty list item (`-`).
 - Required baseline boards exist in `./kanban/`:
   - `today.md`
   - `this_week.md`
@@ -89,5 +95,5 @@ Prompt -> Plan (based on a known playbook) -> Request approval -> Execute -> Pla
 If this occurs inside a git repo:
 - Review `git status` and relevant diffs.
 - Suggest a commit message that summarizes the completed task.
-- Update today's journal repo work log before commit.
+- Prompt journal create/update after summary; apply approved journal edits before commit.
 - Commit after approved checkpoint completion.

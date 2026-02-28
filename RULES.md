@@ -81,6 +81,9 @@ Commit history is a first-class UI surface. The user should see a list of recent
 Before summarizing completed work to the user, check `./downtime/reports/pending/` for pending downtime reports (ignore the folder's `README.md`).
 * If any pending report artifacts (excluding `README.md`) exist, explicitly tell the user that downtime reports are pending review and list their paths.
 * If none exist, no special note is required.
+After the completion summary is presented:
+* Prompt the user to create or update today's journal entry with relevant checkpoint details (if needed).
+* Prompt for commit/push action using the applicable playbook approval mode.
 
 ### Journal + Kanban Operational Policies
 
@@ -89,6 +92,14 @@ These policies govern daily journaling and kanban usage in this repository.
 #### Journal Logging Requirement
 * Any work that changes repository state must be logged in today's journal entry at `./journal/YYYY-MM-DD.md`.
 * Journal log entries should be append-only unless the user explicitly asks to edit prior text.
+* The journal create/update prompt should occur after the completion summary and before commit/push execution.
+* If non-journal repository changes are in scope and journal create/update is not approved, do not commit.
+
+#### Journal Field Ownership Contract
+* `Today's Intentions` and `Notes / Reflections` are user-only fields.
+* Agents may only copy user-provided text verbatim into user-only fields.
+* If user-only input is not provided, leave an empty list item (`-`).
+* `Kickoff Context`, `Kanban State Summary`, and `Repo Work Log` are agent-managed fields.
 
 #### Kanban Immutability Contract
 * Kanban task lines are immutable user-authored data.
@@ -98,6 +109,7 @@ These policies govern daily journaling and kanban usage in this repository.
 #### Snapshot Commit Rule (Conversation Checkpoints)
 * Commits represent completed conversation checkpoints, not completion of the broader plan.
 * Before committing, present a clear snapshot summary.
+* After summary, prompt to create/update today's journal entry with the checkpoint details.
 * Explicit approval is required before commit unless staged scope is journal-only.
 * Journal-only exception: if staged changes are only journal updates, commit/push may proceed without a commit approval prompt.
 

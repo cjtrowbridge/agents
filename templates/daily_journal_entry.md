@@ -1,5 +1,18 @@
 # Journal: YYYY-MM-DD
 
+## Field Ownership
+
+- User-only fields:
+  - `Today's Intentions`
+  - `Notes / Reflections`
+- Agent-managed fields:
+  - `Kickoff Context`
+  - `Kanban State Summary`
+  - `Repo Work Log (Required)`
+- Rule:
+  - For user-only fields, agent may only insert verbatim user-provided text.
+  - If user input is not provided, leave an empty list item (`-`).
+
 ## Kickoff Context
 
 - Date: YYYY-MM-DD
@@ -17,7 +30,7 @@
 
 ## Today's Intentions
 
-- [captured from conversation]
+-
 
 ## Kanban State Summary
 
@@ -32,4 +45,4 @@
 
 ## Notes / Reflections
 
-- [freeform]
+-

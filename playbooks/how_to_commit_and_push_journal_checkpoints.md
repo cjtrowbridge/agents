@@ -7,13 +7,11 @@ Commit and push approved journal checkpoint snapshots while keeping journal work
 
 ## Prerequisites
 
-- Journal checkpoint files are updated and user has reviewed the snapshot summary.
 - Git is available and remote `origin` is configured.
 
 ## Step-by-Step Instructions
 
 1. **Confirm Journal Checkpoint Scope**
-   - Ensure the checkpoint includes journal updates for repo work performed.
    - Confirm staged files align with the discussed checkpoint.
 
 2. **Review Status, Staging, and Untracked Files**
@@ -30,23 +28,28 @@ Commit and push approved journal checkpoint snapshots while keeping journal work
 4. **Summarize the Checkpoint**
    - Provide:
      - files changed,
-     - journal additions,
+     - planned journal additions (if not yet written),
      - any kanban moves (verbatim lines).
 
-5. **Apply Commit Approval Rule**
+5. **Prompt Journal Create/Update**
+   - After summary, ask whether to create/update today's journal entry with checkpoint details.
+   - If approved, apply the journal update before commit.
+   - If non-journal repository changes are in scope and journal create/update is not approved, stop before commit.
+
+6. **Apply Commit Approval Rule**
    - In `journal-only mode`, commit approval prompt is not required.
    - In `mixed mode`, ask:
      - "Approve saving this snapshot?"
      - "Approve commit + push for this journal checkpoint?"
    - In both modes, summarize what will be committed before executing.
 
-6. **Commit**
+7. **Commit**
    - Suggested message pattern:
      - `journal: checkpoint YYYY-MM-DD <short description>`
    - In `mixed mode`, run commit only after explicit approval.
    - In `journal-only mode`, run commit immediately after summary.
 
-7. **Push Immediately**
+8. **Push Immediately**
    - Push to `origin` immediately after checkpoint commit.
    - Report success or exact failure.
 
@@ -67,6 +70,6 @@ Prompt -> Plan (based on a known playbook) -> Request approval -> Execute -> Pla
 
 If this occurs inside a git repo:
 - Review `git status` and relevant diffs.
-- Ensure today's journal repo work log is updated before commit.
+- Prompt for journal create/update after summary; apply approved journal edits before commit.
 - Suggest a commit message that summarizes the completed checkpoint.
 - Commit after checkpoint completion using the applicable approval mode above.

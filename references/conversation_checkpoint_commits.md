@@ -12,15 +12,18 @@
 
 - Files changed and why.
 - Journal updates added in this checkpoint.
+- Any user-only journal fields and whether user input was provided.
 - Kanban moves with exact task text.
 - Any unresolved items or follow-up questions.
 
 ## Approval Language Pattern
 
 - "Here is what I captured and where it will be written."
+- "Do you want me to create or update today's journal entry with this checkpoint?"
 - "Approve saving this snapshot?"
 - "Approve commit + push for this journal checkpoint?"
 - Journal-only exception: if staged scope is only journal updates, commit/push may proceed without a commit approval prompt after summary.
+- User-only journal fields must remain verbatim user text (or an empty list item `-` if no user input was provided).
 
 ## Avoiding Commit Spam While Preserving Auditability
 

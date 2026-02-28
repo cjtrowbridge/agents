@@ -19,7 +19,6 @@ Provide a repeatable workflow to summarize staged changes, propose a commit mess
 
 2.  **Confirm Plan and Docs Are Updated**
     *   Ensure the task plan, playbooks (if relevant), and docs are updated before committing.
-    *   Ensure today's journal repo work log includes the repository changes in scope (skip only when staged scope is journal-only updates).
     *   If anything is missing, update it first, then return to Step 1.
 
 3.  **Handle Untracked Files (Never Assume They Should Be Added)**
@@ -38,7 +37,14 @@ Provide a repeatable workflow to summarize staged changes, propose a commit mess
         *   A concise bullet list of changes since the last commit.
         *   A single-sentence commit message suggestion (imperative mood).
 
-6.  **Request Approval**
+6.  **Prompt Journal Create/Update**
+    *   After presenting the summary, ask:
+        *   whether to create today's journal entry (if missing), and/or
+        *   whether to append relevant checkpoint details to today's journal entry.
+    *   If approved, perform the journal create/update before commit.
+    *   If non-journal repository changes are in scope and journal create/update is not approved, stop before commit.
+
+7.  **Request Approval**
     *   Ask the user to approve:
         *   the change summary,
         *   the commit message,
@@ -47,12 +53,12 @@ Provide a repeatable workflow to summarize staged changes, propose a commit mess
     *   Confirm how to handle any untracked files (ignore, add specific files, or stop).
     *   Do **not** commit or push until explicit approval is given for each action.
 
-7.  **Commit After Approval**
+8.  **Commit After Approval**
     *   Command: `git commit -m "<approved message>"`
     *   Expected: Commit created with the approved message.
     *   If commit fails: re-check staged files and resolve any errors.
 
-8.  **Push to Origin (Only If Approved)**
+9.  **Push to Origin (Only If Approved)**
     *   Command: `git push origin HEAD`
     *   Expected: Remote updated with the new commit.
     *   If push fails: capture the error output and report it.

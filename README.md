@@ -48,6 +48,7 @@ Prompt -> Plan (based on a playbook in `./playbooks/`) -> Request approval -> Ex
 
 - On startup, run the daily kickoff workflow in discovery mode first, then ask approval before writing files.
 - Baseline board names: `today`, `this_week`, `eventually`, `ideas`, `reminders`.
+- Journal ownership rule: `Today's Intentions` and `Notes / Reflections` are user-only fields.
 - Kanban moves must preserve task lines verbatim.
 - Journal checkpoint commits use a separate commit/push policy from general repository git operations.
 

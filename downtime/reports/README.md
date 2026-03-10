@@ -9,18 +9,19 @@ Each downtime task produces an individual report artifact containing a comprehen
 ## Workflow
 
 1. Run a task from `./downtime/`
-2. Create a report in `./downtime/reports/pending/` using the task filename with `.report` inserted before `.md`
+2. Create a report in `./downtime/reports/pending/` using `task-base.YYYY-MM-DD-HH-mm-ss.report.md`
 3. User reviews and approves/rejects suggestions
 4. If reviewed, move or copy the report to `./downtime/reports/reviewed/` (and implement changes in a separate approved task)
 
 ## Naming
 
-Use the same base filename as the downtime task, with `.report` inserted before `.md`.
+Use `task-base.YYYY-MM-DD-HH-mm-ss.report.md`.
+If needed, append a deterministic numeric suffix (`-01`, `-02`, ...) before `.report.md`.
 
 Examples:
 
-- `./downtime/verify_playbook_index_matches_repository.md` -> `./downtime/reports/pending/verify_playbook_index_matches_repository.report.md`
-- `./downtime/review_templates_against_actual_outputs.md` -> `./downtime/reports/pending/review_templates_against_actual_outputs.report.md`
+- `./downtime/verify_playbook_index_matches_repository.md` -> `./downtime/reports/pending/verify_playbook_index_matches_repository.2026-03-10-15-00-00.report.md`
+- `./downtime/review_templates_against_actual_outputs.md` -> `./downtime/reports/pending/review_templates_against_actual_outputs.2026-03-10-15-00-00.report.md`
 
 Use `./templates/downtime_report.md` as the starting template.
 

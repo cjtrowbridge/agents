@@ -17,8 +17,11 @@ Provide a repeatable workflow to summarize staged changes, propose a commit mess
     *   Expected: Shows staged files under `Changes to be committed`, and any untracked files under `??`.
     *   If nothing staged: run `git add <files>` and re-check.
 
-2.  **Confirm Plan and Docs Are Updated**
-    *   Ensure the task plan, playbooks (if relevant), and docs are updated before committing.
+2.  **Confirm Active Plan and Docs Are Updated**
+    *   Ensure the active plan file is updated to reflect completed checklist items and any approved revisions.
+    *   Ensure summary content includes active plan path and checklist item deltas for this checkpoint.
+    *   If any plan file moved/changed, run `python scripts/regenerate_plan_indexes.py` before commit.
+    *   Ensure playbooks/docs (if relevant) are updated before committing.
     *   If anything is missing, update it first, then return to Step 1.
 
 3.  **Handle Untracked Files (Never Assume They Should Be Added)**
@@ -35,6 +38,7 @@ Provide a repeatable workflow to summarize staged changes, propose a commit mess
 5.  **Summarize Changes**
     *   Read the staged diff and produce:
         *   A concise bullet list of changes since the last commit.
+        *   Active plan path + checklist items updated in this checkpoint.
         *   A single-sentence commit message suggestion (imperative mood).
 
 6.  **Prompt Journal Create/Update**
@@ -66,7 +70,7 @@ Provide a repeatable workflow to summarize staged changes, propose a commit mess
 ## Reminder
 *   First law of vibe coding: commit after every approved completed checkpoint.
 *   This playbook governs git actions and intentionally does not require separate documentation updates merely to record that a commit/push happened.
-*   This playbook intentionally omits a separate "Lifecycle Compliance" section because lifecycle compliance is documented in the task/playbook being completed; this file defines the git execution workflow used within that lifecycle.
+*   This playbook intentionally omits a separate "Lifecycle Compliance" section because lifecycle compliance is documented in the governing task plan and execution playbook; this file defines the git execution workflow used within that lifecycle.
 
 ## Verification
 *   `git log -1 --oneline` shows the new commit.

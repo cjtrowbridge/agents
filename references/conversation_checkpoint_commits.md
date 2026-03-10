@@ -11,6 +11,8 @@
 ## What to Include in Checkpoint Summary
 
 - Files changed and why.
+- Active plan path for the checkpoint.
+- Checklist items changed (`[x]` / `[?]` / `[-]` / newly added plan items).
 - Journal updates added in this checkpoint.
 - Any user-only journal fields and whether user input was provided.
 - Kanban moves with exact task text.
@@ -19,6 +21,7 @@
 ## Approval Language Pattern
 
 - "Here is what I captured and where it will be written."
+- "This checkpoint updates plan `path/to/plan.md` items: [...]."
 - "Do you want me to create or update today's journal entry with this checkpoint?"
 - "Approve saving this snapshot?"
 - "Approve commit + push for this journal checkpoint?"

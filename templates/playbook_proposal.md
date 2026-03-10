@@ -20,6 +20,15 @@
 
 [What the playbook covers]
 
+## Plan Governance Impact
+
+- How this playbook creates/selects/refines active execution plans:
+  - [description]
+- How this playbook constrains execution to approved plan checklist items:
+  - [description]
+- How this playbook handles out-of-plan divergence:
+  - [stop + propose revision behavior]
+
 ## Out of Scope
 
 [What remains in other playbooks/references]

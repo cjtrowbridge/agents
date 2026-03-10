@@ -18,7 +18,7 @@ Each file should define:
 * the suggested interval,
 * the procedure,
 * evidence to collect,
-* and a completion history entry format.
+* and any optional archival/completion-history convention to be updated only in a separate approved implementation checkpoint.
 
 Use `./playbooks/how_to_use_downtime_to_improve_the_framework.md` to select and run a task.
 
@@ -26,7 +26,8 @@ Write reports to:
 * `./downtime/reports/pending/` (new reports awaiting review)
 
 Report naming:
-* Use the same base filename as the downtime task, with `.report` inserted before `.md` (for example, `x.md` -> `x.report.md`).
+* Use `task-base.YYYY-MM-DD-HH-mm-ss.report.md` (for example, `x.md` -> `x.2026-03-10-15-00-00.report.md`).
+* If a collision occurs, append a deterministic numeric suffix (`-01`, `-02`, ...) before `.report.md`.
 
 Use:
 * `./templates/downtime_report.md`

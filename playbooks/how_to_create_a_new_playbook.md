@@ -57,9 +57,12 @@ A 1-sentence summary of what this playbook achieves.
 ## Verification
 How to confirm the task was successful.
 
+## Plan Binding
+How this playbook generates, selects, or constrains the active execution plan.
+
 ## Lifecycle Compliance
 Confirm the workflow follows the required cycle:
-Prompt -> Plan (based on a known playbook) -> Request approval -> Execute -> Plan/playbook update -> Docs update -> Verification.
+Prompt -> Select/Create Plan (using relevant playbook guidance) -> Request approval -> Execute approved plan atoms -> Plan update -> Docs update -> Verification.
 
 If this occurs inside a git repo:
 * Review `git status` and relevant diffs.
@@ -73,6 +76,7 @@ If this occurs inside a git repo:
 *   **Anticipate Failure**: If a step is prone to error (like network timeouts), provide a specific remediation sub-step.
 *   **Code-First**: Where possible, reference specific scripts in the repo rather than writing long manual terminal commands.
 *   **Idempotency**: Playbooks should ideally be repeatable without breaking the system.
+*   **Plan Authority**: Every new playbook must explicitly state how it binds execution to approved active plan checklist items.
 *   **Lifecycle Alignment**: Include the lifecycle compliance block so agents always follow plan/approval/update/verify and commit after approved checkpoint completion.
 
 ## 5. Finalizing

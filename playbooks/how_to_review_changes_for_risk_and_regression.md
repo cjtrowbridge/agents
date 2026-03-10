@@ -32,6 +32,7 @@ Provide a repeatable review workflow that prioritizes bugs, behavioral regressio
     * Look for:
         * Incorrect logic or broken edge cases
         * Contradictions with existing policy/playbooks
+        * Execution performed outside approved active plan scope
         * Missing approval boundaries
         * Invalid file paths/links/references
         * Incomplete rollout (code changed, docs not updated)
@@ -47,7 +48,7 @@ Provide a repeatable review workflow that prioritizes bugs, behavioral regressio
 
 5.  **Classify Findings by Severity**
     * Use severity-oriented ordering:
-        * High: likely breakage, policy contradiction, unsafe behavior, incorrect workflow gate
+        * High: likely breakage, policy contradiction, unsafe behavior, incorrect workflow gate, or out-of-plan execution
         * Medium: missing coverage, ambiguity, maintainability risk, incomplete docs sync
         * Low: clarity improvements, wording nits, structure polish
 
@@ -91,7 +92,7 @@ Provide a repeatable review workflow that prioritizes bugs, behavioral regressio
 ## Lifecycle Compliance
 
 Confirm the workflow follows the required cycle:
-Prompt -> Plan (based on a known playbook) -> Request approval -> Execute -> Plan/playbook update -> Docs update -> Verification.
+Prompt -> Select/Create Plan (using relevant playbook guidance) -> Request approval -> Execute approved plan atoms -> Plan update -> Docs update -> Verification.
 
 If this occurs inside a git repo:
 * Review `git status` and relevant diffs.

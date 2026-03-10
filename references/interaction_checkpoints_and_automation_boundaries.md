@@ -28,7 +28,7 @@ Examples:
 Required behavior:
 - Present the plan or the atomic action
 - State impacted files/areas
-- Ask for explicit approval if policy/playbook requires it
+- Ask for explicit approval if policy or the active plan requires it
 
 ### 2. Information Gap Boundary
 
@@ -45,12 +45,12 @@ Required behavior:
 
 ### 3. Ambiguity Stop Boundary
 
-Use when no playbook exists for the requested task and the workflow would require guessing.
+Use when the active plan is missing, insufficient, or ambiguous for the requested task and execution would require guessing.
 
 Required behavior:
 - Stop
-- State the missing playbook/workflow
-- Ask the user to provide or approve a new playbook path
+- State what is missing from the active plan
+- Propose a concrete plan revision (or plan creation) and request approval before continuing
 
 ### 4. Safety / Permission Boundary
 
@@ -65,7 +65,7 @@ Required behavior:
 
 Before asking the user, check:
 1. Can this be discovered locally?
-2. Is it already specified by policy/playbook?
+2. Is it already specified by policy or the active plan?
 3. Is it reversible and low risk?
 4. Would guessing likely reduce correctness?
 

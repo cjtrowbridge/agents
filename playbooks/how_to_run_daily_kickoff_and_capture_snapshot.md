@@ -52,27 +52,38 @@ Run a startup workflow that discovers daily artifact state, gets approval before
      - `Today's Intentions` from the user (verbatim user text only),
      - immediate task flow details.
 
-7. **Apply Kanban Changes**
+7. **Confirm Active Plan Before Non-Trivial Execution**
+   - Identify the governing active plan path in `./plans/current/` for non-trivial repository changes.
+   - If no suitable active plan exists, create a quick-start plan scaffold via `./playbooks/how_to_create_and_maintain_task_execution_plans.md` and request approval before implementation.
+   - Quick-start scaffold minimum:
+     - objective checklist item,
+     - implementation checklist decomposition,
+     - verification checklist decomposition.
+   - Promote `future -> current` immediately before the first non-trivial implementation edit.
+   - Map intended checkpoint work to explicit plan checklist items.
+
+8. **Apply Kanban Changes**
    - If task moves are requested, follow `./playbooks/how_to_move_kanban_tasks_verbatim.md`.
 
-8. **Prepare Journal Update Content**
+9. **Prepare Journal Update Content**
    - Capture `Today's Intentions` using verbatim user-provided text only.
    - Do not author, infer, summarize, or rewrite intentions.
    - If the user does not provide intentions, keep `Today's Intentions` as an empty list item (`-`).
    - Draft kanban state summary and any moves performed.
    - Draft required repo work log entries for repository changes made during the checkpoint.
 
-9. **Present Snapshot Summary**
+10. **Present Snapshot Summary**
    - List files changed.
    - List what was added/updated.
+   - List active plan path and checklist items updated in this checkpoint.
    - List kanban moves with exact task lines.
 
-10. **Prompt Journal Create/Update and Ask Save Approval**
+11. **Prompt Journal Create/Update and Ask Save Approval**
    - After summary, ask whether to create or update today's journal entry with the drafted checkpoint details.
    - Ask user to approve saving the snapshot edits.
    - If approved, save files.
 
-11. **Commit + Push Journal Checkpoint**
+12. **Commit + Push Journal Checkpoint**
    - For journal checkpoint commits, follow `./playbooks/how_to_commit_and_push_journal_checkpoints.md`.
 
 ## Verification
@@ -87,10 +98,11 @@ Run a startup workflow that discovers daily artifact state, gets approval before
   - `reminders.md`
 - Any moved kanban lines are unchanged verbatim in destination.
 - Snapshot summary matches actual diffs.
+- Active plan path and checklist deltas are captured when non-trivial repository work occurred.
 
 ## Lifecycle Compliance
 
-Prompt -> Plan (based on a known playbook) -> Request approval -> Execute -> Plan/playbook update -> Docs update -> Verification.
+Prompt -> Select/Create Plan (using relevant playbook guidance) -> Request approval -> Execute approved plan atoms -> Plan update -> Docs update -> Verification.
 
 If this occurs inside a git repo:
 - Review `git status` and relevant diffs.

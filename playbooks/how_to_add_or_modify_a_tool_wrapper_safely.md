@@ -42,6 +42,8 @@ Provide a safety-first workflow for adding or changing a tool wrapper (command w
 
 4.  **Plan the Change Atomically**
     * Prefer one wrapper behavior change plus its corresponding docs updates in the same patch.
+    * Identify active plan checklist items that authorize the wrapper change.
+    * If no matching checklist items exist, propose and approve a plan revision before implementation.
     * If the change is broad, split into phases:
         * wrapper behavior
         * caller updates
@@ -50,6 +52,7 @@ Provide a safety-first workflow for adding or changing a tool wrapper (command w
     * Request approval before editing files if the workflow requires it.
 
 5.  **Implement the Wrapper Change**
+    * Execute only approved wrapper tasks that map to active plan checklist items.
     * Keep interfaces stable unless a breaking change is explicitly approved.
     * Add concise logging/error handling where it improves diagnosis.
     * Do not silently widen permissions or side effects.
@@ -85,6 +88,7 @@ Provide a safety-first workflow for adding or changing a tool wrapper (command w
 When reporting completion, include:
 * What changed in the wrapper
 * Which files/callers were updated
+* Active plan path and checklist items updated
 * Safety/permission impact (if any)
 * Verification performed
 * Remaining risks or compatibility assumptions
@@ -106,7 +110,7 @@ When reporting completion, include:
 ## Lifecycle Compliance
 
 Confirm the workflow follows the required cycle:
-Prompt -> Plan (based on a known playbook) -> Request approval -> Execute -> Plan/playbook update -> Docs update -> Verification.
+Prompt -> Select/Create Plan (using relevant playbook guidance) -> Request approval -> Execute approved plan atoms -> Plan update -> Docs update -> Verification.
 
 If this occurs inside a git repo:
 * Review `git status` and relevant diffs.

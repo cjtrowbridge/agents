@@ -156,6 +156,7 @@ Use this playbook when:
 
 11.  **Propose an Atomic Integration Plan (Do Not Implement Yet)**
     * Break the recommended changes into small, reviewable tasks.
+    * Bind proposed implementation tasks to a governing plan path and checklist items.
     * Include every file expected to change (`RULES.md`, `README.md`, playbooks, code/tools, templates, etc.).
     * If a new playbook is required, include it explicitly.
     * If prompt/instruction tone changes are proposed, identify where that wording lives and how behavior will be validated.
@@ -163,10 +164,10 @@ Use this playbook when:
     * Request explicit user approval before implementation.
 
 12.  **Execute Only After Approval**
-    * Implement the approved subset of changes.
+    * Implement the approved subset of changes as approved plan checklist atoms.
     * Keep the changes atomic and aligned to the integration plan.
     * Do not silently broaden scope during implementation.
-    * If new insights appear mid-change, pause and update the plan before proceeding.
+    * If new insights appear mid-change, pause and propose plan revisions before proceeding.
 
 13.  **Verify the Assimilation Outcome**
     * Verify at two levels:
@@ -245,7 +246,7 @@ Use this playbook when:
 
 ## Lifecycle Compliance
 Confirm the workflow follows the required cycle:
-Prompt -> Plan (based on a known playbook) -> Request approval -> Execute -> Plan/playbook update -> Docs update -> Verification.
+Prompt -> Select/Create Plan (using relevant playbook guidance) -> Request approval -> Execute approved plan atoms -> Plan update -> Docs update -> Verification.
 
 If this occurs inside a git repo:
 * Review `git status` and relevant diffs.

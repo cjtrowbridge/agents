@@ -29,9 +29,10 @@ Move tasks across kanban columns or boards without modifying task text.
    - List each move as: `source -> destination: exact line`.
 
 5. **Checkpoint Approval Boundary**
-   - Present summary before commit approval.
-   - If this is part of daily workflow, route commit/push through journal checkpoint policy.
-   - Ensure today's journal repo work log captures the kanban move checkpoint before commit.
+    - Present summary before commit approval.
+    - If kanban movement is tied to implementation work, cite active plan path and related checklist items.
+    - If this is part of daily workflow, route commit/push through journal checkpoint policy.
+    - Ensure today's journal repo work log captures the kanban move checkpoint before commit.
 
 ## Verification
 
@@ -41,7 +42,7 @@ Move tasks across kanban columns or boards without modifying task text.
 
 ## Lifecycle Compliance
 
-Prompt -> Plan (based on a known playbook) -> Request approval -> Execute -> Plan/playbook update -> Docs update -> Verification.
+Prompt -> Select/Create Plan (using relevant playbook guidance) -> Request approval -> Execute approved plan atoms -> Plan update -> Docs update -> Verification.
 
 If this occurs inside a git repo:
 - Review `git status` and relevant diffs.

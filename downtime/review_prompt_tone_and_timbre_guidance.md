@@ -14,7 +14,8 @@ Never
 
 ## Downtime Mode (Report-Only)
 
-Use the same base filename as this task file for the report, with `.report` inserted before `.md` (for example, `x.md` -> `x.report.md`).
+Use `task-base.YYYY-MM-DD-HH-mm-ss.report.md` for the report (for example, `x.md` -> `x.2026-03-10-15-00-00.report.md`).
+If needed, append a deterministic numeric suffix (`-01`, `-02`, ...) before `.report.md`.
 
 Do not edit guidance or playbooks/templates during this task run. Record recommended wording refinements in a downtime report artifact.
 
@@ -30,7 +31,7 @@ Do not edit guidance or playbooks/templates during this task run. Record recomme
     * inconsistent progress updates.
 4.  Propose small wording refinements and capture them in the downtime report.
 5.  If related playbooks/templates would need updates, list them in the report with suggested wording changes.
-6.  Create a report named after this task file with `.report` inserted before `.md` in `./downtime/reports/pending/` using `./templates/downtime_report.md`.
+6.  Create a timestamped report in `./downtime/reports/pending/` using `./templates/downtime_report.md`.
 
 ## Evidence to Record
 
@@ -39,6 +40,8 @@ Do not edit guidance or playbooks/templates during this task run. Record recomme
 * Expected impact on consistency
 
 ## Completion History
+
+Update this section only in a separate approved implementation checkpoint, not during the report-only downtime run.
 
 - Never
 

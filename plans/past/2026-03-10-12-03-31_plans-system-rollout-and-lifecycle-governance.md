@@ -1,0 +1,228 @@
+---
+plan_id: 2026-03-10-12-03-31_plans-system-rollout-and-lifecycle-governance
+title: Plans System Rollout and Lifecycle Governance
+summary: Replace roadmap-style milestones with detailed plan files, per-folder indexes, and checkpoint-integrated plan maintenance.
+status: past
+created_at: 2026-03-10-12-03-31
+---
+
+# Plans System Rollout and Lifecycle Governance
+
+Key: `[ ]` pending task, `[x]` completed task, `[?]` needs validation, `[-]` closed task
+
+- [x] 1. Establish the canonical plans filesystem and lifecycle model.
+  - [x] 1.1 Finalize directory semantics and transition rules.
+    - [x] 1.1.1 Define `plans/future/` as queued work not actively executed.
+      - [x] 1.1.1.1 Document the exact promotion trigger from `future` to `current`.
+    - [x] 1.1.2 Define `plans/current/` as active execution only.
+      - [x] 1.1.2.1 Document that only currently worked plans belong in `current`.
+    - [x] 1.1.3 Define `plans/past/` as archived plans with no planned follow-up.
+      - [x] 1.1.3.1 Document the exact archive trigger from `current` to `past`.
+  - [x] 1.2 Finalize naming and metadata standards.
+    - [x] 1.2.1 Standardize filename format `YYYY-MM-DD-HH-mm-ss_slug.md`.
+      - [x] 1.2.1.1 Define slug constraints (lowercase, hyphenated, stable).
+    - [x] 1.2.2 Standardize front matter fields for every plan file.
+      - [x] 1.2.2.1 Require `plan_id`.
+      - [x] 1.2.2.2 Require `title`.
+      - [x] 1.2.2.3 Require `summary`.
+      - [x] 1.2.2.4 Require `status` (`future|current|past`).
+      - [x] 1.2.2.5 Require `created_at` in `YYYY-MM-DD-HH-mm-ss`.
+      - [x] 1.2.2.6 Forbid modification-time fields in front matter.
+  - [x] 1.3 Create baseline plans directories in the repository.
+    - [x] 1.3.1 Create `plans/future/`.
+    - [x] 1.3.2 Create `plans/current/`.
+    - [x] 1.3.3 Create `plans/past/`.
+
+- [x] 2. Define the canonical plan file structure and decomposition depth.
+  - [x] 2.1 Define required top-of-file elements.
+    - [x] 2.1.1 Require YAML front matter for machine-parseable metadata.
+      - [x] 2.1.1.1 Confirm parser behavior on missing fields.
+    - [x] 2.1.2 Require the checkbox key line in every plan.
+      - [x] 2.1.2.1 Validate key text exactly: `[ ]`, `[x]`, `[?]`.
+  - [x] 2.2 Define plan-body standards.
+    - [x] 2.2.1 Require a single decomposed checklist from abstract to atomic tasks.
+      - [x] 2.2.1.1 Define "atomic" as executable without additional decomposition.
+    - [x] 2.2.2 Require ordered progression from strategy -> implementation -> verification.
+      - [x] 2.2.2.1 Validate ordering in review checklist.
+    - [x] 2.2.3 Require each checklist item to have one clear completion condition.
+      - [x] 2.2.3.1 Add validation criteria to template guidance.
+
+- [x] 3. Implement per-folder plan indexes optimized for grep-level discovery.
+  - [x] 3.1 Create one index per status directory.
+    - [x] 3.1.1 Define index files:
+      - [x] 3.1.1.1 `plans/future/index.md`
+      - [x] 3.1.1.2 `plans/current/index.md`
+      - [x] 3.1.1.3 `plans/past/index.md`
+    - [x] 3.1.2 Define one-line entry format for fast scan.
+      - [x] 3.1.2.1 Include `last_modified | path | title | summary`.
+      - [x] 3.1.2.2 Ensure delimiters are stable for script parsing.
+  - [x] 3.2 Build index regeneration automation.
+    - [x] 3.2.1 Create a Python script that scans only `plans/<status>/*.md` excluding `index.md`.
+      - [x] 3.2.1.1 Parse YAML front matter from each plan file.
+    - [x] 3.2.2 Sort entries by filesystem last-write time descending.
+      - [x] 3.2.2.1 Define deterministic tie-breaker by path.
+    - [x] 3.2.3 Render regenerated index content for each folder.
+      - [x] 3.2.3.1 Overwrite index files atomically in a single run.
+  - [x] 3.3 Define index source-of-truth rules.
+    - [x] 3.3.1 Treat filesystem last-write time as canonical ordering value.
+      - [x] 3.3.1.1 Do not store modification-time fields in YAML front matter.
+    - [x] 3.3.2 Define when the script must run (plan create/update/move/archive).
+      - [x] 3.3.2.1 Add this rule to relevant playbooks.
+
+- [x] 4. Migrate roadmap/milestone intent into plan files as the new source of truth.
+  - [x] 4.1 Inventory existing milestone/roadmap statements across framework docs.
+    - [x] 4.1.1 Extract each milestone item with source path and wording.
+      - [x] 4.1.1.1 Preserve traceability map from old location to new plan file.
+  - [x] 4.2 Convert each milestone cluster into plan artifacts.
+    - [x] 4.2.1 Create plan files in `future` or `current` based on active execution state.
+      - [x] 4.2.1.1 Decompose each plan into abstract -> atomic checklist tasks.
+    - [x] 4.2.2 Archive superseded or completed milestone plans into `past`.
+      - [x] 4.2.2.1 Verify no active work remains before archival.
+  - [x] 4.3 Update canonical docs to point to plan files.
+    - [x] 4.3.1 Update `README.md` to define plans as execution source of truth.
+      - [x] 4.3.1.1 Remove or rewrite milestone text that duplicates plan content.
+    - [x] 4.3.2 Update `RULES.md` references that imply roadmap lives elsewhere.
+      - [x] 4.3.2.1 Add policy wording for plan-first execution tracking.
+  - [x] 4.4 Publish migration guidance for upstream adopters.
+    - [x] 4.4.1 Add a detailed migration playbook for converting README roadmaps into plan files.
+    - [x] 4.4.2 Add README guidance that routes adopters to the migration playbook.
+    - [x] 4.4.3 Register the migration playbook in the `RULES.md` playbook index.
+
+- [x] 5. Integrate plan maintenance into playbooks, templates, and checkpoint summaries.
+  - [x] 5.1 Add plan metadata to planning and summary templates.
+    - [x] 5.1.1 Update `templates/change_plan.md` with:
+      - [x] 5.1.1.1 Active plan path.
+      - [x] 5.1.1.2 Planned checklist item updates.
+      - [x] 5.1.1.3 Index regeneration step.
+    - [x] 5.1.2 Update `templates/daily_journal_entry.md` with:
+      - [x] 5.1.2.1 Active plan path reference for checkpoint.
+      - [x] 5.1.2.2 Checklist items changed in that checkpoint.
+  - [x] 5.2 Enforce plan updates at end-of-run summaries.
+    - [x] 5.2.1 Update commit/snapshot playbooks to require plan checklist updates before commit.
+      - [x] 5.2.1.1 Update `playbooks/how_to_commit_and_push_changes.md`.
+      - [x] 5.2.1.2 Update `playbooks/how_to_commit_and_push_journal_checkpoints.md`.
+    - [x] 5.2.2 Add verification step confirming plan and relevant index were refreshed.
+      - [x] 5.2.2.1 Fail checkpoint if non-journal changes exist without plan update.
+  - [x] 5.3 Add execution workflow coverage for lifecycle actions.
+    - [x] 5.3.1 Create a dedicated playbook for plan lifecycle maintenance.
+      - [x] 5.3.1.1 Cover create/select/update/move/archive/index regeneration.
+    - [x] 5.3.2 Index the new playbook in `RULES.md`.
+      - [x] 5.3.2.1 Update README workflow inventory if scope changes.
+
+- [x] 6. Add downtime utilization tasks for plan-system maintenance and drift control.
+  - [x] 6.1 Create downtime task definitions (report-only) for plan hygiene.
+    - [x] 6.1.1 Add task to audit plan index drift and metadata validity.
+      - [x] 6.1.1.1 Define expected report checks (missing front matter, bad status, malformed `created_at`, forbidden modification-time fields).
+    - [x] 6.1.2 Add task to audit stale `current` plans and archive candidates.
+      - [x] 6.1.2.1 Flag plans with no updates beyond agreed age threshold.
+    - [x] 6.1.3 Add task to audit decomposition quality (abstract -> atomic completeness).
+      - [x] 6.1.3.1 Flag checklist items that still need deeper decomposition.
+  - [x] 6.2 Index downtime tasks in `RULES.md` Downtime Task Index.
+    - [x] 6.2.1 Confirm names and paths exactly match filesystem.
+  - [x] 6.3 Ensure downtime execution remains report-only.
+    - [x] 6.3.1 Verify playbook language does not allow direct framework edits from downtime runs.
+
+- [x] 7. Define verification and operational safeguards.
+  - [x] 7.1 Add script-level validation checks.
+    - [x] 7.1.1 Fail on missing required front matter keys.
+    - [x] 7.1.2 Fail on directory/status mismatch (`status: future` not in `plans/future`).
+    - [x] 7.1.3 Fail on duplicate `plan_id`.
+    - [x] 7.1.4 Fail on invalid key line format in plan body.
+    - [x] 7.1.5 Fail on presence of forbidden modification-time metadata fields.
+  - [x] 7.2 Add workflow-level verification checks.
+    - [x] 7.2.1 Verify each checkpoint touched plan checklist items when task work changed.
+    - [x] 7.2.2 Verify each affected index contains current plan metadata.
+    - [x] 7.2.3 Verify docs indexes in `README.md` and `RULES.md` reflect new artifacts.
+  - [x] 7.3 Define concurrency and conflict handling.
+    - [x] 7.3.1 Document single-active-editor rule per plan file per checkpoint.
+    - [x] 7.3.2 Document merge conflict resolution order: plan file first, index second.
+
+- [x] 8. Bootstrap with an initial canonical plan and migration checkpoint.
+  - [x] 8.1 Create the initial rollout plan file in `plans/future/`.
+    - [x] 8.1.1 Include front matter + key + decomposed checklist to atomic depth.
+  - [x] 8.2 Perform first execution checkpoint using this plan.
+    - [x] 8.2.1 Mark completed items with `[x]`.
+    - [x] 8.2.2 Mark uncertain outcomes with `[?]`.
+    - [x] 8.2.3 Verify filesystem last-write time changed after checklist update.
+  - [x] 8.3 Regenerate and verify folder index after first checkpoint.
+    - [x] 8.3.1 Confirm new plan entry appears in the correct status index.
+    - [x] 8.3.2 Confirm grep discoverability with targeted query checks.
+
+- [x] 9. Transition framework governance from playbook-gated execution to plan-gated execution.
+  - [x] 9.1 Complete deep-dive policy audit across core framework artifacts.
+    - [x] 9.1.1 Audit root policy/bootstrap files for conflicting authority language.
+      - [x] 9.1.1.1 Review `README.md`, `RULES.md`, `AGENTS.md`, `CLAUDE.md`, `CODEX.md`, `GEMINI.md`, and `OPENCODE.md`.
+    - [x] 9.1.2 Audit playbooks for lifecycle and ambiguity boundaries that still center playbooks as execution authority.
+      - [x] 9.1.2.1 Locate lifecycle clauses using `Prompt -> Plan (based on a known playbook) -> ...`.
+    - [x] 9.1.3 Audit references/templates/downtime tasks for policy coupling to playbook-first execution.
+      - [x] 9.1.3.1 Identify required wording and structure updates for plan-first governance.
+  - [x] 9.2 Establish canonical policy language in `RULES.md` and `README.md`.
+    - [x] 9.2.1 Replace playbook-first entrypoint policy with plan-first entrypoint policy.
+      - [x] 9.2.1.1 Define playbooks as plan-generation/plan-validation guidance, not direct execution authority.
+    - [x] 9.2.2 Define hard execution guardrail: agents execute only approved atomic tasks present in an active plan file.
+      - [x] 9.2.2.1 Define required stop condition when requested work is missing from the active plan.
+    - [x] 9.2.3 Define revision authority: agents may pause and propose plan revisions when execution evidence diverges.
+      - [x] 9.2.3.1 Require explicit approval before applying proposed plan revisions.
+    - [x] 9.2.4 Replace lifecycle strings to a plan-first canonical sequence in all policy sections.
+      - [x] 9.2.4.1 Ensure no remaining text implies a playbook is sufficient authority to execute.
+  - [x] 9.3 Create the dedicated plan-lifecycle playbook as the execution-control backbone.
+    - [x] 9.3.1 Add `playbooks/how_to_create_and_maintain_task_execution_plans.md`.
+      - [x] 9.3.1.1 Define create/select/bind/revise/promote/archive/index-refresh workflow.
+    - [x] 9.3.2 Include required "stop and propose revision" boundary behavior.
+      - [x] 9.3.2.1 Include approval language patterns for mid-run plan changes.
+    - [x] 9.3.3 Define verification steps for plan integrity before execution.
+      - [x] 9.3.3.1 Verify active plan path, checklist key presence, atomic-task granularity, and status-directory consistency.
+    - [x] 9.3.4 Register the playbook in policy indexes.
+      - [x] 9.3.4.1 Update `RULES.md` playbook index entry.
+      - [x] 9.3.4.2 Update `README.md` workflow inventory if needed.
+  - [x] 9.4 Refactor existing operational playbooks to generate and enforce plan-bound execution.
+    - [x] 9.4.1 Update `playbooks/how_to_run_daily_kickoff_and_capture_snapshot.md`.
+      - [x] 9.4.1.1 Require selecting/confirming an active plan before non-trivial execution.
+    - [x] 9.4.2 Update `playbooks/how_to_commit_and_push_changes.md`.
+      - [x] 9.4.2.1 Require plan checklist delta verification before commit.
+    - [x] 9.4.3 Update `playbooks/how_to_commit_and_push_journal_checkpoints.md`.
+      - [x] 9.4.3.1 Require checkpoint summary to include active plan path and item-level status updates.
+    - [x] 9.4.4 Update `playbooks/how_to_move_kanban_tasks_verbatim.md`.
+      - [x] 9.4.4.1 Add plan-binding rule when kanban move is part of execution work.
+    - [x] 9.4.5 Update `playbooks/debugging_changes_that_lead_to_errors.md`.
+      - [x] 9.4.5.1 Require proposed fixes to map to existing plan atoms or approved plan revisions.
+    - [x] 9.4.6 Update `playbooks/how_to_review_changes_for_risk_and_regression.md`.
+      - [x] 9.4.6.1 Add finding category for "execution occurred outside approved plan scope."
+    - [x] 9.4.7 Update `playbooks/how_to_add_or_modify_a_tool_wrapper_safely.md`.
+      - [x] 9.4.7.1 Require wrapper changes to identify and update governing plan items.
+    - [x] 9.4.8 Update `playbooks/how_to_assimilate_another_agentic_framework.md`.
+      - [x] 9.4.8.1 Frame graft execution as plan-proposed then plan-approved work.
+    - [x] 9.4.9 Update `playbooks/how_to_migrate_readme_roadmaps_to_plans_system.md`.
+      - [x] 9.4.9.1 Ensure migration workflow ends with active-plan selection for execution.
+    - [x] 9.4.10 Update `playbooks/how_to_use_downtime_to_improve_the_framework.md`.
+      - [x] 9.4.10.1 Align downtime review language with plan-governance terms.
+    - [x] 9.4.11 Update `playbooks/how_to_create_a_new_playbook.md`.
+      - [x] 9.4.11.1 Require new playbooks to specify how they generate and constrain execution plans.
+  - [x] 9.5 Refactor references for plan-first decision boundaries and checkpoint behavior.
+    - [x] 9.5.1 Update `references/interaction_checkpoints_and_automation_boundaries.md`.
+      - [x] 9.5.1.1 Replace "missing playbook" ambiguity stop with "missing/insufficient active plan" stop.
+    - [x] 9.5.2 Update `references/conversation_checkpoint_commits.md`.
+      - [x] 9.5.2.1 Require checkpoint summaries to include plan path and checklist deltas.
+    - [x] 9.5.3 Update `references/verification_patterns_for_docs_and_policy.md`.
+      - [x] 9.5.3.1 Add explicit plan-governance verification criteria.
+    - [x] 9.5.4 Update `references/how_to_shape_agent_tone_and_timbre.md`.
+      - [x] 9.5.4.1 Add directive language for plan-bound execution and revision proposals.
+  - [x] 9.6 Update templates to enforce plan provenance in every execution artifact.
+    - [x] 9.6.1 Update `templates/change_plan.md`.
+      - [x] 9.6.1.1 Add required fields for active plan path, targeted checklist items, and proposed plan edits.
+    - [x] 9.6.2 Update `templates/daily_journal_entry.md`.
+      - [x] 9.6.2.1 Add required fields for plan path and checklist items updated in checkpoint.
+    - [x] 9.6.3 Update `templates/playbook_proposal.md`.
+      - [x] 9.6.3.1 Add required section explaining how the proposed playbook generates or constrains execution plans.
+  - [x] 9.7 Reorient downtime tasks from playbook-coverage language to plan-governance language.
+    - [x] 9.7.1 Update downtime task files that currently audit "playbook coverage/index" to include plan-system audits.
+      - [x] 9.7.1.1 Ensure report scopes include plan index drift, stale current plans, and decomposition quality.
+    - [x] 9.7.2 Update downtime task index entries in `RULES.md`.
+      - [x] 9.7.2.1 Ensure names/descriptions match updated task intent.
+  - [x] 9.8 Perform repo-wide verification sweep for policy consistency.
+    - [x] 9.8.1 Run grep checks for stale lifecycle wording and playbook-as-authority wording.
+      - [x] 9.8.1.1 Confirm no authoritative section allows execution outside approved plan atoms.
+    - [x] 9.8.2 Verify README/RULES indexes and descriptions reflect the new governance model.
+      - [x] 9.8.2.1 Verify playbook, reference, template, and downtime indexes are synchronized.
+    - [x] 9.8.3 Verify active plan checklist reflects all completed transition steps.
+      - [x] 9.8.3.1 Mark completed items and carry unresolved items as explicit pending atoms.

@@ -14,7 +14,8 @@ Never
 
 ## Downtime Mode (Report-Only)
 
-Use the same base filename as this task file for the report, with `.report` inserted before `.md` (for example, `x.md` -> `x.report.md`).
+Use `task-base.YYYY-MM-DD-HH-mm-ss.report.md` for the report (for example, `x.md` -> `x.2026-03-10-15-00-00.report.md`).
+If needed, append a deterministic numeric suffix (`-01`, `-02`, ...) before `.report.md`.
 
 Do not create or modify assimilation trail entries during this task run. Record proposed entries/edits in a downtime report artifact.
 
@@ -29,7 +30,7 @@ Do not create or modify assimilation trail entries during this task run. Record 
     * what was rejected/deferred,
     * why.
 5.  Include concrete file references for implemented grafts when possible.
-6.  Create a report named after this task file with `.report` inserted before `.md` in `./downtime/reports/pending/` using `./templates/downtime_report.md`.
+6.  Create a timestamped report in `./downtime/reports/pending/` using `./templates/downtime_report.md`.
 
 ## Evidence to Record
 
@@ -38,6 +39,8 @@ Do not create or modify assimilation trail entries during this task run. Record 
 * Any pending follow-up items
 
 ## Completion History
+
+Update this section only in a separate approved implementation checkpoint, not during the report-only downtime run.
 
 - Never
 

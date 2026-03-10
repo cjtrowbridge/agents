@@ -39,6 +39,17 @@
 - Moves performed this checkpoint (verbatim task lines only):
   - [from -> to] `exact task line`
 
+## Plan Checkpoint Linkage
+
+- Active plan path:
+  - [plans/current/...md]
+- Checklist items updated this checkpoint:
+  - [`[x]` item]
+  - [`[?]` item]
+  - [`[-]` item]
+- Plan revisions proposed/approved this checkpoint:
+  - [none | short note]
+
 ## Repo Work Log (Required)
 
 - [YYYY-MM-DD HH:MM local] [change summary] [reason] [follow-up if any]

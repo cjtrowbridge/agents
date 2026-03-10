@@ -3,14 +3,15 @@
 ## Downtime Task
 
 - Task file: `./downtime/[task-file].md`
-- Report file: `./downtime/reports/pending/[task-file-base].report.md`
+- Report file: `./downtime/reports/pending/[task-file-base].YYYY-MM-DD-HH-mm-ss.report.md`
 - Task name:
 - Report date:
 
 ## Naming Rule
 
-- Use the same base name as the downtime task file, with `.report` inserted before `.md`.
-- Example: `./downtime/x.md` -> `./downtime/reports/pending/x.report.md`
+- Use `task-base.YYYY-MM-DD-HH-mm-ss.report.md`.
+- If needed, append a deterministic numeric suffix (`-01`, `-02`, ...) before `.report.md`.
+- Example: `./downtime/x.md` -> `./downtime/reports/pending/x.2026-03-10-15-00-00.report.md`
 
 ## Scope Reviewed
 

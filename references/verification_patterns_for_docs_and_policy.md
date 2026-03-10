@@ -32,6 +32,7 @@ A file can exist and still fail the framework if it is:
    - Steps can be followed in order.
    - Preconditions and outputs are clear.
    - Approval/verification gates are explicit where required.
+   - Execution boundaries are tied to approved active plan checklist items.
 
 5. **Aligned**
    - Matches current repo policy and does not contradict `RULES.md`.
@@ -45,6 +46,7 @@ Verify:
 - Objective is specific
 - Prerequisites are realistic
 - Steps are ordered and executable
+- Plan-binding rules are explicit (active plan path + checklist mapping)
 - Approval gate appears before implementation (when required)
 - Verification section exists
 - Lifecycle compliance is addressed (unless intentionally omitted and explained)
@@ -75,10 +77,12 @@ Verify:
 - Required vs optional fields are distinguishable
 - Template aligns with the playbook that calls it
 - Field names match the terms used in the workflow
+- Execution templates capture active plan path and checklist deltas when applicable
 
 Failure patterns:
 - Ambiguous placeholders
 - Missing approval request section in planning templates
+- Missing active plan path/checklist delta fields in execution checkpoint templates
 - Sections that no playbook actually uses
 
 ### Indexes / Organization Docs (`RULES.md`, `README.md`)

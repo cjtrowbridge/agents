@@ -28,12 +28,16 @@ Commit and push approved journal checkpoint snapshots while keeping journal work
 4. **Summarize the Checkpoint**
    - Provide:
      - files changed,
+     - active plan path,
+     - checklist items updated in this checkpoint,
      - planned journal additions (if not yet written),
      - any kanban moves (verbatim lines).
 
 5. **Prompt Journal Create/Update**
    - After summary, ask whether to create/update today's journal entry with checkpoint details.
    - If approved, apply the journal update before commit.
+   - If mixed-mode changes occurred, ensure active plan checklist updates are applied before commit.
+   - If mixed-mode changes touched plan files, run `python scripts/regenerate_plan_indexes.py` before commit.
    - If non-journal repository changes are in scope and journal create/update is not approved, stop before commit.
 
 6. **Apply Commit Approval Rule**
@@ -63,10 +67,11 @@ Commit and push approved journal checkpoint snapshots while keeping journal work
 - Latest commit message matches checkpoint pattern.
 - `git status -sb` is clean (or only expected untracked files remain).
 - `git push origin HEAD` succeeds for checkpoint commits.
+- Checkpoint summary includes active plan path and checklist item changes.
 
 ## Lifecycle Compliance
 
-Prompt -> Plan (based on a known playbook) -> Request approval -> Execute -> Plan/playbook update -> Docs update -> Verification.
+Prompt -> Select/Create Plan (using relevant playbook guidance) -> Request approval -> Execute approved plan atoms -> Plan update -> Docs update -> Verification.
 
 If this occurs inside a git repo:
 - Review `git status` and relevant diffs.

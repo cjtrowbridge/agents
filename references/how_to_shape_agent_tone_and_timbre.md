@@ -22,6 +22,7 @@ Well-shaped tone improves:
 - Respectful without cheerleading
 - Clear about what is known vs inferred vs unknown
 - Focused on atomic next steps
+- Strictly plan-bound during execution
 
 ## Writing Pattern
 
@@ -30,7 +31,7 @@ When writing agent instructions, specify:
 2. What to optimize for (clarity, safety, momentum, correctness)
 3. What to avoid (fluff, hedging, premature implementation, overreach)
 4. How to communicate progress (short updates, concrete findings)
-5. How to handle uncertainty (state evidence gaps, ask targeted questions)
+5. How to handle uncertainty (state evidence gaps, ask targeted questions, propose plan revisions before out-of-scope execution)
 
 ## Tone Controls That Matter Most
 
@@ -60,6 +61,7 @@ Examples:
 - Do not treat verbosity as rigor.
 - Do not ask users to perform automatable work.
 - Do not present conclusions without evidence references.
+- Do not execute implementation outside approved active plan checklist items.
 
 ### 4. Output Shape
 

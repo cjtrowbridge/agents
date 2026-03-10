@@ -1,8 +1,8 @@
-# Downtime Task: Audit Playbook Overlap and Extract References
+# Downtime Task: Audit Playbook Overlap and Extract Plan-Governance References
 
 ## Purpose
 
-Find duplicated guidance across playbooks and extract reusable patterns into `./references/` so playbooks stay shorter and more atomic.
+Find duplicated guidance across playbooks and extract reusable patterns into `./references/` so playbooks stay shorter, more atomic, and aligned to plan-governance rules.
 
 ## Suggested Interval
 
@@ -14,13 +14,14 @@ Never
 
 ## Downtime Mode (Report-Only)
 
-Use the same base filename as this task file for the report, with `.report` inserted before `.md` (for example, `x.md` -> `x.report.md`).
+Use `task-base.YYYY-MM-DD-HH-mm-ss.report.md` for the report (for example, `x.md` -> `x.2026-03-10-15-00-00.report.md`).
+If needed, append a deterministic numeric suffix (`-01`, `-02`, ...) before `.report.md`.
 
 Do not create or modify `./references/` or playbook files during this task run. Record suggested extraction changes in a downtime report artifact.
 
 ## Procedure
 
-1.  Scan playbooks for repeated instruction blocks (tone, verification, approval wording, anti-patterns).
+1.  Scan playbooks for repeated instruction blocks (tone, verification, approval wording, plan-binding rules, anti-patterns).
 2.  Identify duplication that appears in 2+ playbooks.
 3.  Decide:
     * keep duplication (if task-specific), or
@@ -31,7 +32,7 @@ Do not create or modify `./references/` or playbook files during this task run. 
     * the concise playbook-specific replacement wording,
     * and any needed cross-references.
 5.  If a new reference file would be added, record the required `RULES.md` reference index update.
-6.  Create a report named after this task file with `.report` inserted before `.md` in `./downtime/reports/pending/` using `./templates/downtime_report.md`.
+6.  Create a timestamped report in `./downtime/reports/pending/` using `./templates/downtime_report.md`.
 
 ## Evidence to Record
 
@@ -40,6 +41,8 @@ Do not create or modify `./references/` or playbook files during this task run. 
 * New reference to add/update (if any)
 
 ## Completion History
+
+Update this section only in a separate approved implementation checkpoint, not during the report-only downtime run.
 
 - Never
 
